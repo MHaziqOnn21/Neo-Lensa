@@ -22,8 +22,8 @@ Ensure you have the following installed:
 ### Setup
 1. Clone the repository:
    ```bash
-   https://github.com/MHaziqOnn21/Neo-Lensa---Yolov7-PyQT5.git
-   cd Neo-Lensa---Yolov7-PyQT5
+   https://github.com/MHaziqOnn21/Neo-Lensa.git
+   cd Neo-Lensa
 
 2. Install dependencies:
   '''bash
