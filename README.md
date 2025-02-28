@@ -21,7 +21,7 @@ Ensure you have the following installed:
 - OpenCV
 
 ### Setup
-1. Setup anaconda environment.
+1. Setup anaconda environment and activate it.
    
 2. Clone the repository:
    ```bash
