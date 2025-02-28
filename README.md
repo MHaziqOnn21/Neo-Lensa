@@ -26,14 +26,14 @@ Ensure you have the following installed:
    cd Neo-Lensa
 
 2. Install dependencies:
-  '''bash
-  pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 3. Download YOLOv7 weights and place them in the appropriate directory.
 
 4. Run the application:
-   '''bash
-   python main.py
+   ```bash
+   python MyApp_17.py
 
 ### Usage
 - **Real-time Mode: Enter a webcam index or RTSP URL to start detection.**
