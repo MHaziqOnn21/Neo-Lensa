@@ -42,7 +42,7 @@ Ensure you have the following installed:
    # CUDA 11.8
    pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu118
 
-5. Download YOLOv7 weights and place them in the appropriate directory.
+5. Download YOLOv7 weights and place them or any other custom YOLOv7 models in the 'ptmodels' folder.
 
 6. Run the application:
    ```bash
