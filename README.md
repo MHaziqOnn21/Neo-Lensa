@@ -13,6 +13,7 @@
 
 ### Prerequisites
 Ensure you have the following installed:
+- Anaconda
 - Python 3.8+
 - PyTorch
 - YOLOv7 dependencies
@@ -20,18 +21,20 @@ Ensure you have the following installed:
 - OpenCV
 
 ### Setup
-1. Clone the repository:
+1. Setup anaconda environment.
+   
+2. Clone the repository:
    ```bash
    https://github.com/MHaziqOnn21/Neo-Lensa.git
    cd Neo-Lensa
 
-2. Install dependencies:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
 
-3. Download YOLOv7 weights and place them in the appropriate directory.
+4. Download YOLOv7 weights and place them in the appropriate directory.
 
-4. Run the application:
+5. Run the application:
    ```bash
    python MyApp_17.py
 
