@@ -44,4 +44,4 @@ Ensure you have the following installed:
 - **Adjust settings to use a custom YOLOv7 model if needed.**
 
 
-# UNDER DEVELOPMENT
+#                   UNDER DEVELOPMENT
