@@ -2,6 +2,11 @@
 
 **Neo Lensa** is a desktop application that integrates **YOLOv7** with **PyQt5** for object detection in real-time and offline modes. It allows users to process live camera feeds (webcams or RTSP streams) or analyze pre-recorded video files. Designed for ease of use, Neo Lensa provides a smooth UI for AI-powered object detection.
 
+![Neo Lensa Screenshot](UI_images/UI_img1.png)
+
+![Neo Lensa Screenshot](UI_images/UI_img2.png)
+
+
 ## Features
 - **Real-time Detection** – Supports webcam and RTSP streams for live object detection.
 - **Offline Mode** – Process pre-recorded videos for analysis.
