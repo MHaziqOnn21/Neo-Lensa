@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRunnable, QThreadPool, QObject, pyqtSignal, pyqtSlot, QTimer, Qt, QUrl
 from PyQt5.QtGui import QIcon, QPixmap, QImage, QMovie, QDesktopServices
 from PyQt5.QtWidgets import QMessageBox, QMainWindow
-from detection import run_inference  # Import the backend function
+from realtime_detection import run_inference  # Import the backend function
 from multiprocessing import Process, Queue
 from queue import Empty
 import cv2
