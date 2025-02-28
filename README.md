@@ -39,3 +39,6 @@ Ensure you have the following installed:
 - **Real-time Mode: Enter a webcam index or RTSP URL to start detection.**
 - **Offline Mode: Upload a video file and process it for object detection.**
 - **Adjust settings to use a custom YOLOv7 model if needed.**
+
+
+# UNDER DEVELOPMENT
