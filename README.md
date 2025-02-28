@@ -14,7 +14,7 @@
 ### Prerequisites
 Ensure you have the following installed:
 - Anaconda
-- Python 3.8+
+- Python 3.9.21
 - PyTorch
 - YOLOv7 dependencies
 - PyQt5
