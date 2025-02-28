@@ -37,9 +37,14 @@ Ensure you have the following installed:
    ```bash
    pip install -r requirements.txt
 
-4. Download YOLOv7 weights and place them in the appropriate directory.
+4. Install PyTorch:
+   ```bash
+   # CUDA 11.8
+   pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu118
 
-5. Run the application:
+5. Download YOLOv7 weights and place them in the appropriate directory.
+
+6. Run the application:
    ```bash
    python main.py
 
