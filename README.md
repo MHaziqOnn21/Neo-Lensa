@@ -41,7 +41,7 @@ Ensure you have the following installed:
 
 5. Run the application:
    ```bash
-   python MyApp_17.py
+   python main.py
 
 ### Usage
 - **Real-time Mode: Enter a webcam index or RTSP URL to start detection.**
