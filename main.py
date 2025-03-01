@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRunnable, QThreadPool, QObject, pyqtSignal, pyqtSlot, QTimer, Qt, QUrl
-from PyQt5.QtGui import QIcon, QPixmap, QImage, QMovie, QDesktopServices
+from PyQt5.QtGui import QIcon, QPixmap, QImage, QMovie, QDesktopServices, QCursor
 from PyQt5.QtWidgets import QMessageBox, QMainWindow
 from realtime_detection import run_inference  # Import the backend function
 from multiprocessing import Process, Queue
@@ -23,7 +23,10 @@ import time
 import numpy as np
 import yaml
 
+from zoom import ZoomableLabel
+
 class Ui_MainWindow(QMainWindow):
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setMinimumSize(QtCore.QSize(1920, 1080))
@@ -1560,7 +1563,8 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout.addWidget(self.Cam1_label)
         spacerItem18 = QtWidgets.QSpacerItem(20, 5, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout.addItem(spacerItem18)
-        self.Cam1_feed = QtWidgets.QLabel(self.page_3)
+        # self.Cam1_feed = QtWidgets.QLabel(self.page_3)
+        self.Cam1_feed = ZoomableLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1611,7 +1615,8 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_6.addWidget(self.Cam2_label)
         spacerItem19 = QtWidgets.QSpacerItem(20, 5, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout_6.addItem(spacerItem19)
-        self.Cam2_feed = QtWidgets.QLabel(self.page_4)
+        # self.Cam2_feed = QtWidgets.QLabel(self.page_4)
+        self.Cam2_feed = ZoomableLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -2364,7 +2369,7 @@ class Ui_MainWindow(QMainWindow):
         self.is_recording_enabled = True  # Default: Recording is enabled
 
         self.no_recording_radiobutton.clicked.connect(self.toggle_recording)
-        
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -2692,20 +2697,14 @@ class Ui_MainWindow(QMainWindow):
                 return
 
         if self.output_queue.empty():
-                # print("No frames in the output queue.")
-                return
+                return  # No frames in the queue
 
         # Get the latest frame from the queue
         try:
                 frame, camera_id = self.output_queue.get_nowait()  # Non-blocking get
-                # print(f"Frame received from backend for camera {camera_id}.")
         except Empty:
                 print("No frames available in the queue.")
                 return  # No frames in the queue
-
-        # Debug: Print the frame and its type
-        # print("Frame:", frame)
-        # print("Frame type:", type(frame))
 
         # Check if the frame is valid
         if frame is None:
@@ -2731,23 +2730,11 @@ class Ui_MainWindow(QMainWindow):
         # Convert QImage to QPixmap
         pixmap = QPixmap.fromImage(q_img)
 
-        # Scale the QPixmap to fit or cover the QLabel while maintaining aspect ratio
+        # Update the underlying pixmap of the ZoomableLabel without resetting zoom
         if camera_id == self.realtime_lineedit1.text().strip():  # Camera 1
-                self.Cam1_feed.setPixmap(
-                pixmap.scaled(
-                        self.Cam1_feed.size(),
-                        Qt.KeepAspectRatioByExpanding,  # Use Qt.KeepAspectRatio for fit
-                        Qt.SmoothTransformation
-                )
-                )
+                self.Cam1_feed.update_pixmap(pixmap)  # Use a new method to update the pixmap
         elif camera_id == self.realtime_lineedit2.text().strip():  # Camera 2
-                self.Cam2_feed.setPixmap(
-                pixmap.scaled(
-                        self.Cam2_feed.size(),
-                        Qt.KeepAspectRatioByExpanding,  # Use Qt.KeepAspectRatio for fit
-                        Qt.SmoothTransformation
-                )
-                )
+                self.Cam2_feed.update_pixmap(pixmap)  # Use a new method to update the pixmap
 
 
     def closeEvent(self, event):
@@ -2865,7 +2852,7 @@ class Ui_MainWindow(QMainWindow):
                 self.input_queue.put(("update_recording_state", self.is_recording_enabled))
                 print(f"Sent recording state to backend: {'Enabled' if self.is_recording_enabled else 'Disabled'}")
 
-
+    
 
 if __name__ == "__main__":
     import sys
